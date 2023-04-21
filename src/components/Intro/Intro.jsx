@@ -1,21 +1,44 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Box, Button, Typography } from "@mui/material";
-import SongBg from "../../assets/song.jpg";
-import Riptide from "../../assets/riptide.mp3";
+import me from "../../assets/me.jpg";
+// import riptide from "../../assets/riptide.mp3";
 
 export const Intro = () => {
-  const song = new Audio(Riptide);
+  // const song = new Audio(riptide);
 
-  const playSong = () => {
-    song.play();
-  };
+  // const playSong = () => {
+  //   song.play();
+  // };
 
-  const pauseSong = () => {
-    song.pause();
+  // const pauseSong = () => {
+  //   song.pause();
+  // };
+
+  const introRef = useRef();
+
+  const handleMouseMove = (e) => {
+    const introImg = document.getElementById("introImg");
+
+    const screenWidth = introRef.current?.clientWidth ?? 0,
+      screenHeight = introRef.current?.clientHeight ?? 0,
+      degX = ((e.clientX / screenWidth) * 100 - 50) / 4,
+      degY = ((e.clientY / screenHeight) * 100 - 75) / 4;
+
+    introImg.animate(
+      {
+        transform: `rotateX(${degY}deg) rotateY(${degX}deg) translate3d(-50%, -50%, 0)`,
+      },
+      {
+        duration: 5000,
+        fill: "forwards",
+      }
+    );
   };
 
   return (
     <Box
+      ref={introRef}
+      onMouseMove={handleMouseMove}
       sx={{
         color: "white",
         height: "calc(100vh - 120px)",
@@ -23,22 +46,23 @@ export const Intro = () => {
       }}
     >
       <Box
+        id="introImg"
         sx={{
           position: "absolute",
           top: "50%",
           left: "50%",
-          transform: "translate(-50%, -50%)",
+          transform: "rotateX(20deg) translate3d(-50%, -50%, 0)",
           width: "500px",
           aspectRatio: "1",
           borderRadius: "30px",
-          backgroundImage: `url("${SongBg}")`,
+          backgroundImage: `url("${me}")`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           filter: "brightness(0.6)",
         }}
-        muted="muted"
-        onMouseEnter={playSong}
-        onMouseLeave={pauseSong}
+        // muted="muted"
+        // onMouseEnter={playSong}
+        // onMouseLeave={pauseSong}
       />
 
       <Box
@@ -46,7 +70,7 @@ export const Intro = () => {
           position: "absolute",
           top: "50%",
           left: "50%",
-          transform: "translate(-50%, -50%)",
+          transform: "rotateX(0deg) translate(-50%, -50%)",
           width: "600px",
           "& .MuiTypography-root": {
             fontFamily: "Montserrat",

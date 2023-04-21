@@ -1,8 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
+const textValue = "Siddharth S";
+
 export const Navbar = () => {
+  const [text, setText] = useState(textValue);
+  const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+  const handleMouseOver = (e) => {
+    let iterations = 0;
+    const interval = setInterval(() => {
+      const textLetters = e.target.innerText.split("");
+
+      console.log(iterations);
+
+      const x = textLetters
+        .map((lettter, i) => {
+          if (i < iterations) return textValue[i];
+
+          return alphabets[Math.floor(Math.random() * 26)];
+        })
+        .join("");
+
+      setText(x);
+
+      if (iterations > text.length) clearInterval(interval);
+
+      iterations += 1 / 4;
+    }, 30);
+  };
+
   return (
     <Box
       component="nav"
@@ -16,6 +44,7 @@ export const Navbar = () => {
       }}
     >
       <Box
+        onMouseOver={handleMouseOver}
         sx={{
           fontFamily: "Montserrat",
           fontWeight: "900",
@@ -24,7 +53,7 @@ export const Navbar = () => {
           color: "rgb(163,116,255)",
         }}
       >
-        Siddharth S
+        {text}
       </Box>
 
       <Box

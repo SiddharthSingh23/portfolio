@@ -12,7 +12,7 @@ export const About = () => {
         gap: "5rem"
       }}
     >
-      <Box fontSize="0.7rem" fontWeight="600" color="rgb(163,116,255)">ABOUT ME</Box>
+      <Box fontFamily="Montserrat" fontSize="0.8rem" fontWeight="600" color="rgb(163,116,255)">ABOUT ME</Box>
 
       <Box sx={{ width: "500px", color: "white", fontSize: "1.5rem" }}>
         Passionate{" "}

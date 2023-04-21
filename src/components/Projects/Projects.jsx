@@ -1,72 +1,138 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
-import img from "../../assets/song.jpg";
+// import img from "../../assets/song.jpg";
 
 export const Projects = () => {
-  const items = ["item1", "item2", "item3", "item4", "item5"];
+  const [isDragging, setIsDragging] = useState(false);
+  const [startPos, setStartPos] = useState(0);
+  const [prevPercent, setPrevPercent] = useState(0);
+  const [nextPercent, setNextPercent] = useState(0);
 
-  const [imgTrack, setImgTrack] = useState(0);
-  const [isDown, setIsDown] = useState(false);
+  const items = [
+    "Item1",
+    "Item2",
+    "Item3",
+    "Item4",
+    "Item5",
+    "Item6",
+    "Item7",
+    "Item8",
+  ];
 
   const handleMouseDown = (e) => {
-    setIsDown(true);
-    setImgTrack(e.clientX);
+    setIsDragging(true);
+    setStartPos(e.clientX);
   };
 
   const handleMouseMove = (e) => {
-    if (isDown) {
-      const mouseDelta = imgTrack - e.clientX,
-        maxDelta = window.innerWidth / 2;
+    if (!isDragging) return;
+    e.preventDefault();
 
-      const percent = (mouseDelta / maxDelta) * 100;
+    const relativePos = e.clientX - startPos;
+    const maxPos = window.innerWidth / 2;
+
+    const currentPercent = (relativePos / maxPos) * 100;
+    const newPercent = prevPercent + currentPercent;
+
+    // range 0-100
+    const percent = Math.max(Math.min(newPercent, 0), -100);
+
+    setNextPercent(percent);
+
+    const projectCarousel = document.getElementById("projectCarousel");
+
+    projectCarousel.animate(
+      {
+        transform: `translate(${percent}%, -50%)`,
+      },
+      {
+        duration: 1200,
+        fill: "forwards",
+      }
+    );
+
+    for (const image of projectCarousel.getElementsByClassName(
+      "projectImage"
+    )) {
+      image.animate(
+        {
+          objectPosition: `${100 + percent}% center`,
+        },
+        { duration: 1200, fill: "forwards" }
+      );
     }
   };
 
-  const handleMouseUp = () => {
-    setIsDown(false);
+  const handleMouseUp = (e) => {
+    setIsDragging(false);
+    setPrevPercent(nextPercent);
   };
 
   return (
     <Box
+      onMouseDown={handleMouseDown}
+      onMouseMove={handleMouseMove}
+      onMouseUp={handleMouseUp}
+      onMouseLeave={handleMouseUp}
       sx={{
-        paddingY: "100px",
-        display: "flex",
-        gap: "3rem",
-        transform: "translate(50%, 0%)",
+        position: "relative",
+        width: "100%",
+        height: "300px",
+        py: "100px",
+        // transform: "rotateZ(6deg)",
       }}
     >
       <Box
-        fontSize="0.7rem"
-        fontWeight="600"
-        paddingTop="10px"
-        color="rgb(163,116,255)"
+        id="projectCarousel"
+        sx={{
+          display: "flex",
+          gap: "3rem",
+          position: "absolute",
+          top: "50%",
+          // starting point 50%
+          left: "50%",
+          transform: `translate(0, -50%)`,
+        }}
       >
-        PROJECTS
-      </Box>
-      {items.map((data) => (
-        <Box
-          key={data}
-          sx={{
-            width: "350px",
-            borderRadius: "20px",
-            aspectRatio: "1",
-            bgcolor: "white",
-            overflow: "hidden",
-          }}
-        >
-          <Box
-            component="img"
-            draggable="false"
-            maxWidth="100%"
-            src={img}
-            alt=""
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-          />
+        <Box fontSize="0.8rem" fontWeight="600" color="rgb(163,116,255)">
+          PROJECTS
         </Box>
-      ))}
+        {items.map((data, index) => (
+          <Box key={data} position="relative">
+            <Box
+              component="img"
+              className="projectImage"
+              draggable="false"
+              src={`https://picsum.photos/550/350?random=${index + 1}`}
+              alt=""
+              sx={{
+                width: "350px",
+                height: "350px",
+                objectFit: "cover",
+                objectPosition: "right center",
+                borderRadius: "20px",
+                opacity: 0.8,
+                transition: "1s",
+                "&:hover": { transform: "scale(1.1)", opacity: 1 },
+              }}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                top: "80%",
+                left: "50%",
+                transform: "rotateZ(-6deg) translate(-50%, -50%)",
+                color:"rgb(23,241,209)",
+                fontSize: "1.4rem",
+                p: "10px 20px",
+                boxShadow: "revert"
+              }}
+            >
+              {data}
+            </Box>
+          </Box>
+        ))}
+      </Box>
     </Box>
   );
 };
