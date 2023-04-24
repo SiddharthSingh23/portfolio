@@ -13,8 +13,6 @@ export const Navbar = () => {
     const interval = setInterval(() => {
       const textLetters = e.target.innerText.split("");
 
-      console.log(iterations);
-
       const x = textLetters
         .map((lettter, i) => {
           if (i < iterations) return textValue[i];

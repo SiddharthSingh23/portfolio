@@ -5,7 +5,7 @@ export const About = () => {
   return (
     <Box
       sx={{
-        paddingY: "100px",
+        py: "100px",
         display: "flex",
         justifyContent: "center",
         alignItems: "baseline",

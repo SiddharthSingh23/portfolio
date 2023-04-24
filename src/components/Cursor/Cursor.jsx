@@ -27,7 +27,7 @@ export const Cursor = () => {
       });
 
       customCursorMain.animate(keyframesMain, {
-        duration: 50,
+        duration: 10,
         fill: "forwards",
       });
     };
@@ -65,8 +65,8 @@ export const Cursor = () => {
       <Box
         id="customCursorMain"
         sx={{
-          height: "20px",
-          width: "20px",
+          height: "18px",
+          width: "18px",
           borderRadius: "50%",
           position: "fixed",
           top: 0,

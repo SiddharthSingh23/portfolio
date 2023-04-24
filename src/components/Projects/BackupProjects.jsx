@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
+// import img from "../../assets/song.jpg";
 
 export const Projects = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -76,8 +77,9 @@ export const Projects = () => {
       sx={{
         position: "relative",
         width: "100%",
-        height: "350px",
+        height: "300px",
         py: "100px",
+        // transform: "rotateZ(6deg)",
       }}
     >
       <Box
@@ -87,6 +89,7 @@ export const Projects = () => {
           gap: "3rem",
           position: "absolute",
           top: "50%",
+          // starting point 50%
           left: "50%",
           transform: `translate(0, -50%)`,
         }}
@@ -100,7 +103,7 @@ export const Projects = () => {
               component="img"
               className="projectImage"
               draggable="false"
-              src={`https://picsum.photos/550/350?random=${index + 1}`}
+              src={`https://picsum.photos/550/350?japan=${index + 1}`}
               alt=""
               sx={{
                 width: "350px",
@@ -108,8 +111,25 @@ export const Projects = () => {
                 objectFit: "cover",
                 objectPosition: "right center",
                 borderRadius: "20px",
+                // opacity: 0.8,
+                // transition: "1s",
+                // "&:hover": { transform: "scale(1.1)", opacity: 1 },
               }}
             />
+            {/* <Box
+              sx={{
+                position: "absolute",
+                top: "80%",
+                left: "50%",
+                transform: "rotateZ(-6deg) translate(-50%, -50%)",
+                color:"rgb(23,241,209)",
+                fontSize: "1.4rem",
+                p: "10px 20px",
+                boxShadow: "revert"
+              }}
+            >
+              {data}
+            </Box> */}
           </Box>
         ))}
       </Box>
