@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Box, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
-const textValue = "Siddharth S";
+const textValue = "SIDDHARTH S";
 
 export const Navbar = () => {
+  const ref = useRef(null);
+
   const [text, setText] = useState(textValue);
   const alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-  const handleMouseOver = (e) => {
+  const handleMouseOver = () => {
     let iterations = 0;
+    let myName = document.getElementById("myName");
+
     const interval = setInterval(() => {
-      const textLetters = e.target.innerText.split("");
+      const textLetters = myName.innerText.split("");
 
       const x = textLetters
         .map((lettter, i) => {
@@ -29,6 +33,32 @@ export const Navbar = () => {
     }, 30);
   };
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          // Element is in view
+          handleMouseOver();
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.5 }
+    );
+
+    let curr = ref.current;
+
+    if (curr) {
+      observer.observe(curr);
+    }
+
+    return () => {
+      if (curr) {
+        observer.unobserve(curr);
+      }
+    };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Box
       component="nav"
@@ -42,7 +72,9 @@ export const Navbar = () => {
       }}
     >
       <Box
+        ref={ref}
         onMouseOver={handleMouseOver}
+        id="myName"
         sx={{
           fontFamily: "Montserrat",
           fontWeight: "900",

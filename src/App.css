@@ -7,5 +7,5 @@ body {
   font-family: "Montserrat", sans-serif;
   box-sizing: border-box;
   background-color: rgb(29, 29, 31);
-  cursor: none;
+  /* cursor: none; */
 }

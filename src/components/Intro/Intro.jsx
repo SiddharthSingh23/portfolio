@@ -66,7 +66,6 @@ export const Intro = () => {
               sx={{
                 fontFamily: "Montserrat",
                 p: "0.8rem 2.5rem",
-                cursor: "none",
                 marginLeft: "1rem",
                 borderRadius: "2rem",
                 fontSize: "0.8rem",

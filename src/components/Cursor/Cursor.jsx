@@ -27,7 +27,7 @@ export const Cursor = () => {
       });
 
       customCursorMain.animate(keyframesMain, {
-        duration: 10,
+        duration: 800,
         fill: "forwards",
       });
     };
