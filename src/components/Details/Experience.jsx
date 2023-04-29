@@ -11,7 +11,7 @@ export const Experience = () => {
       <Box
         pt="100px"
         fontFamily="Montserrat"
-        fontSize="0.8rem"
+        fontSize="1rem"
         fontWeight="600"
         color="rgb(163,116,255)"
         textAlign="center"
@@ -20,7 +20,7 @@ export const Experience = () => {
       </Box>
       <Box
         sx={{
-          p: "60px 0 100px 0",
+          py: "100px",
           display: "flex",
           justifyContent: "center",
           gap: "10rem",
@@ -36,7 +36,7 @@ export const Experience = () => {
           <Typography fontSize="1.8rem" color="rgb(255,255,255)">
             Frontend Web Developer
           </Typography>
-          <Typography fontSize="1rem" color="rgb(255,208,116)" maxWidth="500px">
+          <Typography fontSize="1rem" color="rgb(242, 220, 217,0.8)" maxWidth="500px">
             During my internship at OhLocal as a frontend web developer, I had
             the opportunity to work on the company's main website, which is an
             e-commerce platform. My primary responsibility was to improve the
@@ -52,7 +52,7 @@ export const Experience = () => {
           <Typography fontSize="1.8rem" color="rgb(255,255,255)">
             Associate Software Engineer
           </Typography>
-          <Typography fontSize="1rem" color="rgb(23,241,209)" maxWidth="500px">
+          <Typography fontSize="1rem" color="rgb(242, 220, 217,0.8)" maxWidth="500px">
             As an associate software engineer at HabileLabs, I got the
             opportunity to work as a full stack web developer. During my
             internship, I developed two web applications, each with separate

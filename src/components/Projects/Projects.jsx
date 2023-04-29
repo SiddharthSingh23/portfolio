@@ -91,7 +91,7 @@ export const Projects = () => {
           transform: `translate(0, -50%)`,
         }}
       >
-        <Box fontSize="0.8rem" fontWeight="600" color="rgb(163,116,255)">
+        <Box fontSize="1rem" fontWeight="600" color="rgb(163,116,255)">
           PROJECTS
         </Box>
         {items.map((data, index) => (

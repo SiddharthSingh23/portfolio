@@ -38,4 +38,4 @@ export const techStack = [
   },
 ];
 
-// f2dcd9
+// #f2dcd9
