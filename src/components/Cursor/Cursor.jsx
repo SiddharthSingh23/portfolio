@@ -22,7 +22,7 @@ export const Cursor = () => {
       };
 
       customCursor.animate(keyframes, {
-        duration: 5000,
+        duration: 8000,
         fill: "forwards",
       });
 
@@ -43,16 +43,16 @@ export const Cursor = () => {
       <Box
         id="customCursor"
         sx={{
-          height: "500px",
-          width: "500px",
+          height: "450px",
+          width: "450px",
           background: `linear-gradient(
 						to right, 
             #805E97,
 						#AA9384
 					)`,
-          borderRadius: "50%",
-          filter: "blur(100px)",
-          opacity: 0.8,
+          borderRadius: "40%",
+          filter: "blur(80px)",
+          opacity: 0.7,
 
           position: "fixed",
           top: 0,
