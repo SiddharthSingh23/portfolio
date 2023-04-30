@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Box } from "@mui/material";
+import { motion } from "framer-motion";
 
 export const Projects = () => {
   const [isDragging, setIsDragging] = useState(false);
@@ -68,51 +69,60 @@ export const Projects = () => {
   };
 
   return (
-    <Box
-      onMouseDown={handleMouseDown}
-      onMouseMove={handleMouseMove}
-      onMouseUp={handleMouseUp}
-      onMouseLeave={handleMouseUp}
-      sx={{
-        position: "relative",
-        width: "100%",
-        height: "350px",
-        py: "100px",
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      transition={{
+        type: "spring",
+        duration: 3,
       }}
     >
       <Box
-        id="projectCarousel"
+        onMouseDown={handleMouseDown}
+        onMouseMove={handleMouseMove}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
         sx={{
-          display: "flex",
-          gap: "3rem",
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: `translate(0, -50%)`,
+          position: "relative",
+          width: "100%",
+          height: "350px",
+          py: "100px",
         }}
       >
-        <Box fontSize="1rem" fontWeight="600" color="rgb(163,116,255)">
-          PROJECTS
-        </Box>
-        {items.map((data, index) => (
-          <Box key={data} position="relative">
-            <Box
-              component="img"
-              className="projectImage"
-              draggable="false"
-              src={`https://picsum.photos/550/350?random=${index + 1}`}
-              alt=""
-              sx={{
-                width: "350px",
-                height: "350px",
-                objectFit: "cover",
-                objectPosition: "right center",
-                borderRadius: "20px",
-              }}
-            />
+        <Box
+          id="projectCarousel"
+          sx={{
+            display: "flex",
+            gap: "3rem",
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: `translate(0, -50%)`,
+          }}
+        >
+          <Box fontSize="1rem" fontWeight="600" color="rgb(163,116,255)">
+            PROJECTS
           </Box>
-        ))}
+          {items.map((data, index) => (
+            <Box key={data} position="relative">
+              <Box
+                component="img"
+                className="projectImage"
+                draggable="false"
+                src={`https://picsum.photos/550/350?random=${index + 1}`}
+                alt=""
+                sx={{
+                  width: "350px",
+                  height: "350px",
+                  objectFit: "cover",
+                  objectPosition: "right center",
+                  borderRadius: "20px",
+                }}
+              />
+            </Box>
+          ))}
+        </Box>
       </Box>
-    </Box>
+    </motion.div>
   );
 };

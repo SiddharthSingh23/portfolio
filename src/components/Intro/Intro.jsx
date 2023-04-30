@@ -14,6 +14,21 @@ export const Intro = () => {
       }}
     >
       <Box
+        component={motion.div}
+        initial={{
+          x: "-50%",
+          y: "-50%",
+          opacity: 0.8,
+        }}
+        animate={{
+          scale: [0.3, 1],
+          opacity: 1,
+          borderRadius: ["50%", "10%"],
+        }}
+        transition={{
+          duration: 4,
+          ease: "easeInOut",
+        }}
         id="introImg"
         sx={{
           position: "absolute",
@@ -31,9 +46,9 @@ export const Intro = () => {
       />
 
       <motion.div
-        animate={{ opacity: 1 }}
-        transition={{ duration: 4, delay: 1 }}
         initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 4, delay: 2 }}
       >
         <Box
           sx={{

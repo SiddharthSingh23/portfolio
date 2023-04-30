@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Box, Button } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
+import { motion } from "framer-motion";
 
 const textValue = "SIDDHARTH S";
 
@@ -38,7 +39,10 @@ export const Navbar = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           // Element is in view
-          handleMouseOver();
+          setTimeout(() => {
+            handleMouseOver();
+          }, 2000);
+          
           observer.disconnect();
         }
       },
@@ -56,69 +60,75 @@ export const Navbar = () => {
         observer.unobserve(curr);
       }
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
-    <Box
-      component="nav"
-      sx={{
-        height: "120px",
-        display: "flex",
-        justifyContent: "space-between",
-        placeItems: "center",
-        fontWeight: 600,
-        px: "40px",
-      }}
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 4, delay: 2 }}
     >
       <Box
-        ref={ref}
-        onMouseOver={handleMouseOver}
-        id="myName"
+        component="nav"
         sx={{
-          fontFamily: "Montserrat",
-          fontWeight: "900",
-          fontSize: "35px",
-          letterSpacing: "-.06em",
-          color: "rgb(163,116,255)",
-        }}
-      >
-        {text}
-      </Box>
-
-      <Box
-        sx={{
-          color: "white",
+          height: "120px",
           display: "flex",
-          alignItems: "center",
-          gap: "10px",
+          justifyContent: "space-between",
+          placeItems: "center",
+          fontWeight: 600,
+          px: "40px",
         }}
       >
-        <Button
-          variant="outlined"
+        <Box
+          ref={ref}
+          onMouseOver={handleMouseOver}
+          id="myName"
           sx={{
-            textTransform: "none",
-            borderColor: "rgb(163,116,255)",
-            color: "white",
-            borderRadius: "30px",
-            fontSize: "17px",
-            p: "14px 32px",
-            fontWeight: 700,
-            letterSpacing: "-.5px",
             fontFamily: "Montserrat",
+            fontWeight: "900",
+            fontSize: "35px",
+            letterSpacing: "-.06em",
+            color: "rgb(163,116,255)",
           }}
         >
-          Get in touch
-        </Button>
-        <MenuIcon
+          {text}
+        </Box>
+
+        <Box
           sx={{
-            fontSize: "30px",
-            backgroundColor: "rgb(163,116,255)",
-            borderRadius: "50px",
-            p: "15px",
+            color: "white",
+            display: "flex",
+            alignItems: "center",
+            gap: "10px",
           }}
-        />
+        >
+          <Button
+            variant="outlined"
+            sx={{
+              textTransform: "none",
+              borderColor: "rgb(163,116,255)",
+              color: "white",
+              borderRadius: "30px",
+              fontSize: "17px",
+              p: "14px 32px",
+              fontWeight: 700,
+              letterSpacing: "-.5px",
+              fontFamily: "Montserrat",
+            }}
+          >
+            Get in touch
+          </Button>
+          <MenuIcon
+            sx={{
+              fontSize: "30px",
+              backgroundColor: "rgb(163,116,255)",
+              borderRadius: "50px",
+              p: "15px",
+            }}
+          />
+        </Box>
       </Box>
-    </Box>
+    </motion.div>
   );
 };

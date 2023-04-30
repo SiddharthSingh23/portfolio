@@ -1,5 +1,6 @@
-import { Box, Typography } from "@mui/material";
 import React from "react";
+import { Box, Typography } from "@mui/material";
+import { motion } from "framer-motion";
 
 export const Experience = () => {
   const ohlocal = (e) => {};
@@ -7,7 +8,14 @@ export const Experience = () => {
   const habilelabs = (e) => {};
 
   return (
-    <Box>
+    <motion.div
+      initial={{ scale: 0.8, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      transition={{
+        type: "spring",
+        duration: 3,
+      }}
+    >
       <Box
         pt="100px"
         fontFamily="Montserrat"
@@ -36,7 +44,11 @@ export const Experience = () => {
           <Typography fontSize="1.8rem" color="rgb(255,255,255)">
             Frontend Web Developer
           </Typography>
-          <Typography fontSize="1rem" color="rgb(242, 220, 217,0.8)" maxWidth="500px">
+          <Typography
+            fontSize="1rem"
+            color="rgb(242, 220, 217,0.8)"
+            maxWidth="500px"
+          >
             During my internship at OhLocal as a frontend web developer, I had
             the opportunity to work on the company's main website, which is an
             e-commerce platform. My primary responsibility was to improve the
@@ -52,7 +64,11 @@ export const Experience = () => {
           <Typography fontSize="1.8rem" color="rgb(255,255,255)">
             Associate Software Engineer
           </Typography>
-          <Typography fontSize="1rem" color="rgb(242, 220, 217,0.8)" maxWidth="500px">
+          <Typography
+            fontSize="1rem"
+            color="rgb(242, 220, 217,0.8)"
+            maxWidth="500px"
+          >
             As an associate software engineer at HabileLabs, I got the
             opportunity to work as a full stack web developer. During my
             internship, I developed two web applications, each with separate
@@ -61,36 +77,6 @@ export const Experience = () => {
           </Typography>
         </Box>
       </Box>
-    </Box>
+    </motion.div>
   );
 };
-
-// OhLocal
-// During my internship at OhLocal as a frontend web developer, I had
-// the opportunity to work on the company's main website, which is an
-// e-commerce platform. My primary responsibility was to improve the
-// user interface and user experience of the website. I collaborated
-// with the design team to implement design changes that would enhance
-// the website's functionality and appeal. I also worked on optimizing
-// the website's performance, making sure it loads faster and provides
-// a seamless user experience. The experience taught me a lot about
-// working in a team environment, utilizing agile methodologies, and
-// developing my technical skills as a frontend developer. Overall, it
-// was an enriching experience that helped me gain valuable insights
-// into the world of e-commerce web development.
-
-// HabileLabs
-// As an associate software engineer at Habilelabs, I had the
-// opportunity to work as a full stack web developer. During my
-// internship, I developed two web applications, each with separate
-// user interfaces for the administrators and users. My main
-// responsibilities included designing and developing the front-end
-// using HTML, CSS, and JavaScript, and developing the back-end using
-// PHP and MySQL. I collaborated with the design team to ensure that
-// the user interface was intuitive and user-friendly. Additionally, I
-// worked on optimizing the performance of the applications to provide
-// a seamless experience for the users. The experience helped me
-// develop my technical skills as a full stack developer and provided
-// me with insights into the agile development process. Overall, it was
-// a rewarding experience that helped me grow both professionally and
-// personally.
